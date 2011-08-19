@@ -1,25 +1,22 @@
 <?php
 class Post extends AppModel {
-	var $name = 'Post';
-	var $validate = array(
+	public $name = 'Post';
+
+	public $actsAs = array('Cakeplus.AddValidationRule');
+
+	public $validate = array(
 		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+			'compare2fields' => array(
+				'rule' => array('compare2fields', 'email_confirm'),
+				'message' => 'EmailとEmail Confirmの値が違います',
 			),
 		),
 	);
