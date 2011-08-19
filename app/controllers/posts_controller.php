@@ -30,7 +30,8 @@ class PostsController extends AppController {
 			$this->Session->setFlash('登録完了');
 			$this->redirect(array('action' => 'index'));
 		} else {
-			$this->redirect(array('action' => 'confirm'));
+			$this->Session->setFlash('エラー');
+			$this->redirect(array('action' => 'add'));
 		}
 	}
 
